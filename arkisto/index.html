@@ -1,0 +1,101 @@
+<!DOCTYPE html><html lang="fi"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="manifest" href="../manifest.webmanifest"><link rel="icon" href="../icon-192.png">
+<title>Uutiskooste – arkisto</title><style>
+:root{--bg:#f6f5f2;--card:#fff;--ink:#1c1c1e;--muted:#6b6b70;--line:#e4e2dd;
+--accent:#0b6e4f;--warn:#b54708;--warnbg:#fff4e5;--bar:#ecebe7;--new:#1d4ed8;--newbg:#e6edff;
+--cheap:#2f9e6b;--mid:#c9a227}
+@media(prefers-color-scheme:dark){:root{--bg:#141416;--card:#1e1e21;--ink:#ececee;
+--muted:#9a9aa1;--line:#2c2c30;--accent:#4cc39a;--warn:#f5a35c;--warnbg:#3a2a1a;--bar:#2a2a2e;
+--new:#8fb0ff;--newbg:#1c2640;--cheap:#4cc39a;--mid:#e0bd4a}}
+[hidden]{display:none!important}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);
+font:16px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif}
+a{color:inherit}
+main{max-width:720px;margin:0 auto;padding:max(24px,env(safe-area-inset-top)) 16px 64px}
+h1{font-size:28px;margin:0 0 4px}.paiva{color:var(--muted);margin:0 0 10px}
+.tyokalut{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:18px}
+.laatikko{background:var(--card);border:1px solid var(--line);border-radius:12px;
+padding:16px 18px;margin-bottom:16px}
+.laatikko h3{font-size:15px;margin:0 0 12px;display:flex;justify-content:space-between;
+align-items:center;gap:8px}
+.mittari{display:grid;grid-template-columns:auto 1fr auto;gap:8px 10px;align-items:center;font-size:14px}
+.palkki{height:10px;background:var(--bar);border-radius:5px;overflow:hidden}
+.palkki i{display:block;height:100%;background:var(--warn);border-radius:5px}
+.luku{color:var(--muted);font-variant-numeric:tabular-nums;text-align:right}
+.selite{font-size:12px;color:var(--muted);margin:10px 0 0}
+.nappi{border:1px solid var(--line);background:var(--card);color:var(--ink);text-decoration:none;
+border-radius:8px;padding:7px 12px;font-size:14px;cursor:pointer;display:inline-block}
+.nappi.on{background:var(--accent);border-color:var(--accent);color:#fff}
+.linkkinappi{background:none;border:0;color:var(--muted);font-size:12px;cursor:pointer;
+padding:0;text-decoration:underline}
+.pieni{font-size:12px;padding:4px 9px}
+select{padding:6px 8px;border:1px solid var(--line);border-radius:8px;background:var(--bg);
+color:var(--ink);font-size:14px;max-width:60%}
+/* sää */
+.saa-nyt{display:flex;align-items:center;gap:14px}
+.saa-ikoni{font-size:40px;line-height:1}
+.saa-lampo{font-size:30px;font-weight:600;line-height:1}
+.saa-teksti{font-size:14px;color:var(--muted)}
+.saa-paivat{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px;
+font-size:13px;text-align:center}
+.saa-paivat div{background:var(--bg);border-radius:8px;padding:6px 4px}
+.saa-paivat b{display:block;font-size:18px;font-weight:400}
+.saa-lomake{display:flex;gap:6px;flex-wrap:wrap}
+.saa-lomake input{flex:1;min-width:140px;padding:8px 10px;border:1px solid var(--line);
+border-radius:8px;background:var(--bg);color:var(--ink);font-size:15px}
+/* sähkö */
+.sahko-nyt{font-size:26px;font-weight:600;line-height:1.1}
+.sahko-nyt small{font-size:13px;font-weight:400;color:var(--muted)}
+.kaavio{display:flex;align-items:flex-end;gap:2px;height:80px;margin:12px 0 4px}
+.kaavio i{flex:1;background:var(--cheap);border-radius:2px 2px 0 0;min-height:2px;position:relative}
+.kaavio i.k{background:var(--mid)}.kaavio i.x{background:var(--warn)}
+.kaavio i.nyt{outline:2px solid var(--ink);outline-offset:1px}
+.akseli{display:flex;justify-content:space-between;font-size:11px;color:var(--muted)}
+.sahko-tiedot{font-size:13px;color:var(--muted);margin-top:8px}
+/* paikalliset */
+.paik li{margin-bottom:6px;font-size:15px}.paik ul{margin:0;padding-left:18px}
+.paik time{color:var(--muted);font-size:12px;margin-right:6px}
+.paik a{text-decoration:none}.paik a:hover{text-decoration:underline}
+/* suodattimet */
+.suodattimet{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px}
+.suodattimet button{border:1px solid var(--line);background:var(--card);color:var(--ink);
+border-radius:999px;padding:6px 12px;font-size:14px;cursor:pointer}
+.suodattimet button.on{background:var(--accent);border-color:var(--accent);color:#fff}
+.suodattimet button.piilota.on{background:var(--ink);border-color:var(--ink);color:var(--bg)}
+/* kortit */
+article{background:var(--card);border:1px solid var(--line);border-radius:12px;
+margin-bottom:12px;overflow:hidden;transition:opacity .2s}
+article.luettu{opacity:.55}
+article .sisus{padding:14px 16px}
+article .ylaosa{display:flex;gap:12px;align-items:flex-start}
+article .ylaosa>div{flex:1;min-width:0}
+article .peukku{width:84px;height:84px;object-fit:cover;border-radius:8px;flex:none;background:var(--bar)}
+article h2{font-size:17px;margin:0 0 6px;line-height:1.3}
+article h2 a{text-decoration:none}article h2 a:hover{text-decoration:underline}
+article p{margin:0 0 10px}
+.meta{display:flex;flex-wrap:wrap;gap:6px 8px;align-items:center;font-size:13px;color:var(--muted);margin-bottom:8px}
+.tag{border:1px solid var(--line);border-radius:6px;padding:1px 7px}
+.uusi{background:var(--newbg);color:var(--new);border-color:transparent;font-weight:600}
+.vs{background:var(--warnbg);border-radius:8px;padding:8px 10px;margin-bottom:10px;font-size:14px}
+.vs .lbl{display:block;font-size:11px;font-weight:600;letter-spacing:.04em;
+text-transform:uppercase;color:var(--warn);margin-bottom:2px}
+.vs s{color:var(--muted);text-decoration-color:var(--warn)}
+.oikea{display:block;font-size:11px;font-weight:600;letter-spacing:.04em;
+text-transform:uppercase;color:var(--accent);margin-bottom:2px}
+.linkit{display:flex;flex-wrap:wrap;gap:6px}
+.linkit a{font-size:13px;text-decoration:none;border:1px solid var(--line);border-radius:999px;
+padding:4px 10px;background:var(--bg)}
+.linkit a:hover{border-color:var(--accent)}
+article.paa{border:2px solid var(--accent)}
+article.paa .iso{display:block;width:100%;aspect-ratio:2/1;object-fit:cover;background:var(--bar)}
+article.paa h2{font-size:22px}
+.paa-lbl{display:inline-block;background:var(--accent);color:#fff;font-size:11px;font-weight:700;
+letter-spacing:.05em;text-transform:uppercase;border-radius:6px;padding:2px 8px}
+.tyhja{color:var(--muted);text-align:center;padding:24px 0;display:none}
+.arkisto-lista a{display:block;padding:10px 0;border-bottom:1px solid var(--line);text-decoration:none}
+footer{font-size:12px;color:var(--muted);text-align:center;margin-top:24px}
+</style></head><body><main>
+<h1>Arkisto</h1><p class="paiva">Kunkin päivän viimeisin kooste, 90 päivää taaksepäin.</p>
+<div class="tyokalut"><a class="nappi" href="../">← Tuorein kooste</a></div>
+<div class="laatikko arkisto-lista"><a href="2026-11-15.html">su 15.11.2026</a></div></main></body></html>
