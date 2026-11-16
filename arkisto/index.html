@@ -121,7 +121,16 @@ color:var(--warn);margin-bottom:4px}
 .aiemmin time{color:var(--muted);font-size:12px;margin-right:6px}
 .aiemmin a{text-decoration:none}.aiemmin a:hover{text-decoration:underline}
 .liikenne li{font-size:14px}.liikenne span{color:var(--muted);font-size:13px}
-.tausta{font-size:14px;color:var(--muted);margin:-4px 0 10px}
+.tausta{display:none;font-size:14px;color:var(--muted);margin:-4px 0 10px}
+body.taustat .tausta{display:block}
+.tarina{margin-bottom:14px}.tarina ol{list-style:none;margin:6px 0 0;padding:0 0 0 12px;border-left:2px solid var(--line)}
+.tarina li{font-size:14px;margin-bottom:5px}.tarina li.nyt{font-weight:600}
+.tarina time{color:var(--muted);font-size:12px;margin-right:6px;font-weight:400}
+.tarina a{text-decoration:none}.tarina a:hover{text-decoration:underline}
+.tilarivit{display:grid;grid-template-columns:auto 1fr;gap:6px 14px;font-size:14px;margin-bottom:10px}
+.tilarivit span{color:var(--muted)}.tilarivit b{font-weight:600}
+.tilasyotteet{grid-template-columns:auto 1fr auto}.tilasyotteet span:nth-child(3n+2){color:var(--muted);font-size:13px}
+.huono{color:var(--warn)!important;font-size:14px}
 .tausta b{color:var(--ink);font-weight:600}.tausta .ai{font-size:11px}
 .oikeasti{margin-top:8px;padding-top:8px;border-top:1px dashed var(--warn);font-size:14px}
 .lbl2{display:block;font-size:11px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;
